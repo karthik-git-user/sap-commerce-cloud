@@ -105,6 +105,9 @@
     <extension name='azurecloudhotfolder' />
     <extension name='cloudcommons' />
     <extension name='cloudhotfolder' />
+    <extension dir="${HYBRIS_BIN_DIR}/custom/novalnet/novalnetcore"/>
+	<extension dir="${HYBRIS_BIN_DIR}/custom/novalnet/novalnetcheckoutaddon"/>
+	<extension dir="${HYBRIS_BIN_DIR}/custom/novalnet/novalnetbackoffice"/>
 
 
 <!-- Configuring Required Extensions and AddOns for SAP Commerce integration with SAP Cloud Platform Integration - https://help.sap.com/viewer/50c996852b32456c96d3161a95544cdb/1905/en-US/7f87b6adbab74635b744a1bc38ce8d3c.html-->
