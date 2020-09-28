@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <enumtypes>
+        <enumtype code="OnholdActionType" generate="true" autocreate="true" dynamic="true">
+            <value code="AUTHORIZE"/>
+            <value code="CAPTURE"/>
+        </enumtype>
+    </enumtypes>
+    <itemtypes>
+        <itemtype code="NovalnetPaymentRefInfo" autocreate="true" generate="true" extends="GenericItem">
+            <deployment table="novalnetPaymentRefInfo" typecode="22558"/>
+            <attributes>
+                <attribute qualifier="customerNo" type="java.lang.Long">
+                    <modifiers read="true" write="true" search="false" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="paymentType" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="orginalTid" type="java.lang.Long">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="referenceTransaction" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="cardType" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="cardHolder" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="maskedCardNumber" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="expiryDate" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="accountHolder" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="maskedAccountIban" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="paypalTransactionID" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="paypalEmailID" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="token" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="BaseStore" autocreate="false" generate="false">
+            <attributes>
+                <attribute qualifier="novalnetAPIKey" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false"/>
+                </attribute>
+                <attribute qualifier="novalnetTariffId" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false"/>
+                </attribute>
+                <attribute qualifier="novalnetPaymentAccessKey" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false"/>
+                </attribute>
+                <attribute qualifier="novalnetClientKey" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false"/>
+                </attribute>
+                <attribute qualifier="novalnetPaymentLogo" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                    <defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetVendorscriptTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                    <defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetVendorscriptToEmailAddress" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="NovalnetDirectDebitSepaPaymentMode" extends="StandardPaymentMode" autocreate="true"
+                  generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetDueDate" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute type="OnholdActionType" qualifier="novalnetOnholdAction" generate="true" autocreate="true">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                    <defaultvalue>em().getEnumerationValue("OnholdActionType","CAPTURE")</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetOnholdAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetOneClickShopping" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="NovalnetGuaranteedDirectDebitSepaPaymentMode" extends="StandardPaymentMode" autocreate="true"
+                  generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetDueDate" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetMinimumGuaranteeAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute type="OnholdActionType" qualifier="novalnetOnholdAction" generate="true" autocreate="true">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                    <defaultvalue>em().getEnumerationValue("OnholdActionType","CAPTURE")</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetOnholdAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="NovalnetPayPalPaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute type="OnholdActionType" qualifier="novalnetOnholdAction" generate="true" autocreate="true">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                    <defaultvalue>em().getEnumerationValue("OnholdActionType","CAPTURE")</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetOnholdAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetOneClickShopping" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                    <defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet Credit Card configuration -->
+        <itemtype code="NovalnetCreditCardPaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute type="OnholdActionType" qualifier="novalnetOnholdAction" generate="true" autocreate="true">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                    <defaultvalue>em().getEnumerationValue("OnholdActionType","CAPTURE")</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetOnholdAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnet3dSecure" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                    <defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetAmexLogo" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                    <defaultvalue>java.lang.Boolean.FALSE</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetInlineCC" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                    <defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetOneClickShopping" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                    <defaultvalue>java.lang.Boolean.TRUE</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetStandardLabelCss" type="java.lang.String">
+                    <persistence type="property">
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetStandardInputCss" type="java.lang.String">
+                    <persistence type="property">
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetStandardCss" type="java.lang.String">
+                    <persistence type="property">
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="NovalnetPaymentInfo" extends="PaymentInfo" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="paymentProvider" type="java.lang.String">
+                    <modifiers read="true" write="true" search="false" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="paymentInfo" type="java.lang.String">
+                    <modifiers read="true" write="true" search="false" optional="false"/>
+                    <persistence type="property">
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                </attribute>
+                <attribute qualifier="orderHistoryNotes" type="java.lang.String">
+                    <modifiers read="true" write="true" search="false" optional="true"/>
+                    <persistence type="property">
+                        <columntype>
+                            <value>HYBRIS.LONG_STRING</value>
+                        </columntype>
+                    </persistence>
+                </attribute>
+                <attribute qualifier="paymentEmailAddress" type="java.lang.String">
+                    <modifiers read="true" write="true" search="false" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="paymentGatewayStatus" type="java.lang.String">
+                    <modifiers read="true" write="true" search="false" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <itemtype code="NovalnetCallbackInfo" autocreate="true" generate="true" extends="GenericItem">
+            <deployment table="novalnetCallbackInfo" typecode="22555"/>
+            <attributes>
+                <attribute qualifier="paymentType" type="java.lang.String">
+                    <modifiers read="true" write="true" search="false" optional="false"/>
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="callbackTid" type="java.lang.Long">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="orginalTid" type="java.lang.Long">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="paidAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="orderAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                </attribute>
+                <attribute qualifier="orderNo" type="java.lang.String">
+                    <persistence type="property"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet Invoice configuration -->
+        <itemtype code="NovalnetInvoicePaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetDueDate" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute type="OnholdActionType" qualifier="novalnetOnholdAction" generate="true" autocreate="true">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                    <defaultvalue>em().getEnumerationValue("OnholdActionType","CAPTURE")</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetOnholdAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetCallbackOrderStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetCallbackOrderStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet Guaranteed Invoice configuration -->
+        <itemtype code="NovalnetGuaranteedInvoicePaymentMode" extends="StandardPaymentMode" autocreate="true"
+                  generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute type="OnholdActionType" qualifier="novalnetOnholdAction" generate="true" autocreate="true">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                    <defaultvalue>em().getEnumerationValue("OnholdActionType","CAPTURE")</defaultvalue>
+                </attribute>
+                <attribute qualifier="novalnetOnholdAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetCallbackOrderStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetCallbackOrderStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetMinimumGuaranteeAmount" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet Prepayment configuration -->
+        <itemtype code="NovalnetPrepaymentPaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetCallbackOrderStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetCallbackOrderStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet Barzahlen configuration -->
+        <itemtype code="NovalnetBarzahlenPaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute qualifier="novalnetBarzahlenslipExpiryDate" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetCallbackOrderStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetCallbackOrderStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet Instant Bank Transfer configuration -->
+        <itemtype code="NovalnetInstantBankTransferPaymentMode" extends="StandardPaymentMode" autocreate="true"
+                  generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet iDEAL configuration -->
+        <itemtype code="NovalnetIdealPaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet eps configuration -->
+        <itemtype code="NovalnetEpsPaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet giropay configuration -->
+        <itemtype code="NovalnetGiropayPaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet Przelewy24 configuration -->
+        <itemtype code="NovalnetPrzelewy24PaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet PostFinanceCard configuration -->
+        <itemtype code="NovalnetPostFinanceCardPaymentMode" extends="StandardPaymentMode" autocreate="true"
+                  generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+        <!-- Novalnet PostFinance configuration -->
+        <itemtype code="NovalnetPostFinancePaymentMode" extends="StandardPaymentMode" autocreate="true" generate="true">
+            <attributes>
+                <attribute qualifier="novalnetTestMode" type="java.lang.Boolean">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" initial="false" optional="false"/>
+                </attribute>
+                <attribute qualifier="novalnetEndUserInfo" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers encrypted="false" optional="true"/>
+                </attribute>
+                <attribute autocreate="true" qualifier="novalnetOrderSuccessStatus" type="OrderStatus" generate="true">
+                    <persistence type="property" qualifier="novalnetOrderSuccessStatusPK"/>
+                    <modifiers encrypted="false" search="true" optional="true"/>
+                </attribute>
+            </attributes>
+        </itemtype>
+
+
+    </itemtypes>
+</items>

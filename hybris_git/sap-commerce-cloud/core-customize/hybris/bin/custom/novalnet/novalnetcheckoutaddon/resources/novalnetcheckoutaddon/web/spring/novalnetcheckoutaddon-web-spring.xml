@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+
+    <!-- Expose /acceleratoraddon/web/webroot/WEB-INF/messages/base.js.properties  resource bundle as javascript variables -->
+
+    <bean id="defaultNovalnetcheckoutaddonJavaScriptMessageResourceAccessor"
+          parent="abstractJavaScriptMessageResourceAccessor">
+        <property name="addOnName" value="novalnetcheckoutaddon"/>
+    </bean>
+
+    <bean id="defaultNovalnetcheckoutaddonBeforeViewJsPropsHandlerAdaptee"
+          parent="abstractBeforeViewJsPropsHandlerAdaptee"
+          class="de.hybris.platform.addonsupport.interceptors.ExportJsPropertiesBeforeViewHandler">
+        <property name="messageSource" ref="defaultNovalnetcheckoutaddonJavaScriptMessageResourceAccessor"/>
+    </bean>
+
+    <bean id="getNovalnetcheckoutaddonBeforeViewHandler" parent="beforeViewHandlerAdapter">
+        <property name="adaptee">
+            <ref bean="defaultNovalnetcheckoutaddonBeforeViewJsPropsHandlerAdaptee"/>
+        </property>
+    </bean>
+    <bean id="NovalnetcheckoutaddonBeforeViewHandlerListMergeDirective" depends-on="beforeViewHandlersList"
+          parent="listMergeDirective">
+        <property name="add" ref="getNovalnetcheckoutaddonBeforeViewHandler"/>
+    </bean>
+
+    <context:component-scan base-package="novalnet.novalnetcheckoutaddon.controllers"/>
+
+
+    <bean id="REDIRECT_TO_SUMMARY" class="java.lang.String">
+        <constructor-arg value="redirect:/checkout/multi/novalnet/summary/enter"/>
+    </bean>
+
+    <!-- Customize the redirect URL for checkout Confirmation page -->
+    <bean id="NOVALNET_REDIRECT_TO_CONFIRMATION" class="java.lang.String">
+        <constructor-arg value="redirect:/checkout/multi/novalnet/orderConfirmation/%s"/>
+    </bean>
+
+    <bean id="REDIRECT_TO_PLACEORDER" class="java.lang.String">
+        <constructor-arg value="redirect:/checkout/multi/novalnet/summary/placeOrder"/>
+    </bean>
+
+
+    <bean id="REDIRECT_TO_PAYMENT_METHOD_NOVALNET" class="java.lang.String">
+        <constructor-arg value="redirect:/checkout/multi/novalnet/select-payment-method"/>
+    </bean>
+    <bean id="REDIRECT_TO_PAYMENT_METHOD" class="java.lang.String">
+        <constructor-arg value="redirect:/checkout/multi/novalnet/select-payment-method/add"/>
+    </bean>
+
+    <bean name="novalnetPaymentMethodCheckoutStepController"
+          class="novalnet.novalnetcheckoutaddon.controllers.pages.checkout.steps.NovalnetPaymentMethodCheckoutStepController"/>
+
+    <bean id="novalnetSummaryCheckoutStepController"
+          class="novalnet.novalnetcheckoutaddon.controllers.pages.checkout.steps.NovalnetSummaryCheckoutStepController"/>
+
+    <bean id="novalnetCheckoutController"
+          class="novalnet.novalnetcheckoutaddon.controllers.pages.checkout.steps.NovalnetCheckoutController"/>
+
+    <alias name="novalnetSummaryCheckoutValidator" alias="defaultResponsiveSummaryCheckoutValidator"/>
+    <bean id="novalnetSummaryCheckoutValidator"
+          class="novalnet.novalnetcheckoutaddon.checkout.steps.validation.impl.NovalnetSummaryCheckoutStepValidator"
+          parent="abstractCheckoutStepValidator">
+        <property name="checkoutFlowFacade" ref="checkoutFlowFacade"/>
+        <property name="checkoutFacade" ref="checkoutFacade"/>
+    </bean>
+
+    <alias name="defaultResponsiveSummaryCheckoutStep" alias="responsiveSummaryCheckoutStep"/>
+    <bean id="defaultResponsiveSummaryCheckoutStep" parent="checkoutStep">
+        <property name="checkoutGroup" ref="responsiveCheckoutGroup"/>
+        <property name="checkoutStepValidator" ref="defaultResponsiveSummaryCheckoutValidator"/>
+        <property name="transitions">
+            <map merge="true">
+                <entry key="previous" value-ref="REDIRECT_TO_PAYMENT_METHOD"/>
+                <entry key="current" value-ref="REDIRECT_TO_SUMMARY"/>
+                <entry key="next" value="redirect:/checkout/multi/novalnet/orderConfirmation/%s"/>
+            </map>
+        </property>
+        <property name="progressBarId" value="confirmOrder"/>
+    </bean>
+
+
+    <alias alias="accountPageController" name="novalnetAccountPageController"/>
+    <bean id="novalnetAccountPageController"
+          class="novalnet.novalnetcheckoutaddon.controllers.pages.account.NovalnetAccountPageController"/>
+
+	<bean id="novalnetCallbackHandler" class="novalnet.novalnetcheckoutaddon.controllers.integration.NovalnetCallbackHandler"/>
+    <bean depends-on="beforeControllerHandlersList" parent="listMergeDirective">
+        <property name="add">
+            <bean parent="beforeControllerHandlerAdapter">
+                <property name="adaptee" ref="novalnetCallbackHandler" />
+            </bean>
+        </property>
+    </bean>
+    
+</beans>
+
+
+
+
+
+
+

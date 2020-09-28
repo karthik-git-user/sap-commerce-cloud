@@ -1,0 +1,45 @@
+INSERT_UPDATE NovalnetCreditCardPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code);novalnetStandardLabelCss;novalnetStandardInputCss;novalnetStandardCss
+;novalnetCreditCard;Kredit- / Debitkarte;Credit/Debit Cards;Der Betrag wird Ihrer Kredit-/Debitkarte belastet; The amount will be debited from your credit/debit card;false;PaymentInfo;false;COMPLETED;"font-family: Raleway,Helvetica Neue,Verdana,Arial,sans-serif;font-size: 13px;font-weight: 600;color: #636363;line-height: 1.5;color:red";"color: #636363;font-family: Helvetica Neue,Verdana,Arial,sans-serif;font-size: 14px;";
+
+INSERT_UPDATE NovalnetDirectDebitSepaPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code);novalnetOneClickShopping
+;novalnetDirectDebitSepa;Lastschrift SEPA;Direct Debit SEPA;Der Betrag wird durch Novalnet von Ihrem Konto abgebucht;The amount will be debited from your account by Novalnet;false;PaymentInfo;false;COMPLETED;true
+
+INSERT_UPDATE NovalnetGuaranteedDirectDebitSepaPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetGuaranteedDirectDebitSepa;SEPA-Lastschrift mit Zahlungsgarantie; Direct Debit SEPA with payment guarantee;Der Betrag wird durch Novalnet von Ihrem Konto abgebucht;The amount will be debited from your account by Novalnet;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetInvoicePaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code);novalnetCallbackOrderStatus(code)
+;novalnetInvoice;Kauf auf Rechnung;Invoice;Sie erhalten eine E-Mail mit den Bankdaten von Novalnet, um die Zahlung abzuschließen;You will receive an e-mail with the Novalnet account details to complete the payment;false;PaymentInfo;false;PAYMENT_NOT_AUTHORIZED;COMPLETED
+
+INSERT_UPDATE NovalnetGuaranteedInvoicePaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code);novalnetCallbackOrderStatus(code);
+;novalnetGuaranteedInvoice;Kauf auf Rechnung mit Zahlungsgarantie;Invoice with payment guarantee;Sie erhalten eine E-Mail mit den Bankdaten von Novalnet, um die Zahlung abzuschließen; You will receive an e-mail with the Novalnet account details to complete the payment;false;PaymentInfo;false;PAYMENT_NOT_AUTHORIZED;COMPLETED
+
+INSERT_UPDATE NovalnetPrepaymentPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code);novalnetCallbackOrderStatus(code)
+;novalnetPrepayment;Vorkasse;Prepayment;Sie erhalten eine E-Mail mit den Bankdaten von Novalnet, um die Zahlung abzuschließen;You will receive an e-mail with the Novalnet account details to complete the payment;false;PaymentInfo;false;PAYMENT_NOT_AUTHORIZED;COMPLETED
+
+INSERT_UPDATE NovalnetBarzahlenPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code);novalnetCallbackOrderStatus(code)
+;novalnetBarzahlen;Barzahlen;Barzahlen;Nach erfolgreichem Bestellabschluss erhalten Sie einen Zahlschein bzw. eine SMS. Damit können Sie Ihre Online-Bestellung bei einem unserer Partner im Einzelhandel (z.B. Drogerie, Supermarkt etc.) bezahlen;On successful checkout, you will receive a payment slip/SMS to pay your online purchase at one of our retail partners (e.g. supermarket) ;false;PaymentInfo;false;PAYMENT_NOT_AUTHORIZED;COMPLETED
+
+INSERT_UPDATE NovalnetPayPalPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetPayPal;PayPal;PayPal;Sie werden zu PayPal weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to PayPal. Please don’t close or refresh the browser until the payment is completed;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetInstantBankTransferPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetInstantBankTransfer;Sofortüberweisung;Sofort;Sie werden zu Sofortüberweisung weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to Sofort. Please don’t close or refresh the browser until the payment is completed;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetIdealPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetIdeal;iDEAL;iDEAL;Sie werden zu iDEAL weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to iDEAL. Please don’t close or refresh the browser until the payment is completed.;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetEpsPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetEps;eps;eps;Sie werden zu eps weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to eps. Please don’t close or refresh the browser until the payment is completed;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetGiropayPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetGiropay;giropay;giropay;Sie werden zu giropay weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to giropay. Please don’t close or refresh the browser until the payment is completed;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetPrzelewy24PaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetPrzelewy24;Przelewy24;Przelewy24;Sie werden zu Przelewy24 weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to Przelewy24. Please don’t close or refresh the browser until the payment is completed;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetPostFinancePaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetPostFinance;PostFinance E-Finance;PostFinance E-Finance;Sie werden zu PostFinance weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to PostFinance. Please don’t close or refresh the browser until the payment is completed;false;PaymentInfo;false;COMPLETED
+
+INSERT_UPDATE NovalnetPostFinanceCardPaymentMode;code[unique=true];name[lang=de];name[lang=en];description[lang=de];description[lang=en];active;paymentinfotype(code);novalnetTestMode;novalnetOrderSuccessStatus(code)
+;novalnetPostFinanceCard;PostFinance Card;PostFinance Card;Sie werden zu PostFinance weitergeleitet. Um eine erfolgreiche Zahlung zu gewährleisten, darf die Seite nicht geschlossen oder neu geladen werden, bis die Bezahlung abgeschlossen ist;You will be redirected to PostFinance. Please don’t close or refresh the browser until the payment is completed.;false;PaymentInfo;false;COMPLETED
+

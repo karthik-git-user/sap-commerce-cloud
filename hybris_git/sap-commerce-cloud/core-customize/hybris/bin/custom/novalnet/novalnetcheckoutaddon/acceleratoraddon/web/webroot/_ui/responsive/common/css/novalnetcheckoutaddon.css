@@ -1,0 +1,23 @@
+#testModeText{
+position: relative;
+background-color: #0080c9;
+color: #fff;
+padding: 10px 20px;
+margin-bottom: 8px;
+font-size: 10px;
+text-align: center;
+text-transform: uppercase;
+letter-spacing: 1px;
+line-height: 0.8px;
+border-radius: 5px 5px 5px 5px;
+transition: transform 0.5s ease 0.5s;
+animation: novalnet-test-mode-blinker 2s linear infinite;
+font-weight: bold;
+float:right;
+}
+
+@keyframes novalnet-test-mode-blinker {
+50% {
+opacity: 0;
+}
+}

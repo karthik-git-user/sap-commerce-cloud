@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+        xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+
+    <context merge-by="module" component="editorareaactions" type="Consignment">
+        <y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+            <y:group qualifier="common">
+                <y:label>actiongroup.common</y:label>
+                <y:action action-id="de.hybris.novalnet.backoffice.actions.confirmpickupaction"
+                          property="currentObject"/>
+            </y:group>
+        </y:actions>
+    </context>
+
+    <!-- Notification Area-->
+    <context component="notification-area">
+        <na:notification-area>
+            <na:notifications eventType="novalnetbackoffice.confirmpickup.event" level="SUCCESS">
+                <na:message>hmc.action.confirmpickup.success</na:message>
+            </na:notifications>
+        </na:notification-area>
+    </context>
+
+    <context merge-by="type" parent="GenericItem" type="BaseStore" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.novalnet">
+                <editorArea:section name="hmc.section.globalconfiguration">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetAPIKey"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTariffId"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetPaymentAccessKey"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetClientKey"/>
+
+
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetPaymentLogo"/>
+                </editorArea:section>
+                <editorArea:section name="hmc.section.vendorscriptconfiguration">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetVendorscriptTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetVendorscriptToEmailAddress"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetCreditCardPaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAction"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAmount"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnet3dSecure"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetAmexLogo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetInlineCC"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOneClickShopping"/>
+                </editorArea:section>
+                <editorArea:section name="sec.novalnetpaymentmodecreditcard.customcss">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetStandardLabelCss"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetStandardInputCss"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetStandardCss"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetDirectDebitSepaPaymentMode"
+             component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetDueDate"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAction"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAmount"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOneClickShopping"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetGuaranteedDirectDebitSepaPaymentMode"
+             component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetDueDate"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetMinimumGuaranteeAmount"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAction"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAmount"/>
+
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetInvoicePaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetDueDate"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetCallbackOrderStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAction"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAmount"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetGuaranteedInvoicePaymentMode"
+             component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetMinimumGuaranteeAmount"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetCallbackOrderStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAction"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAmount"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetPrepaymentPaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetCallbackOrderStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetBarzahlenPaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetBarzahlenslipExpiryDate"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetCallbackOrderStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetInstantBankTransferPaymentMode"
+             component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetIdealPaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetEpsPaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetGiropayPaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetPrzelewy24PaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetPayPalPaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAction"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOnholdAmount"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOneClickShopping"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetPostFinancePaymentMode" component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context merge-by="type" parent="StandardPaymentMode" type="NovalnetPostFinanceCardPaymentMode"
+             component="editor-area">
+        <editorArea:editorArea xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+            <editorArea:tab name="hmc.properties">
+                <editorArea:section name="tab.novalnetpaymentmode.properties">
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetTestMode"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetEndUserInfo"/>
+                    <editorArea:attribute xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+                                          qualifier="novalnetOrderSuccessStatus"/>
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+</config>
